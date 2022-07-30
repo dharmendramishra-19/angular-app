@@ -1,14 +1,35 @@
 <h1>{{ title }}</h1>
 <!-- <app-form></app-form> -->
-<input type="text" placeholder="Enter Task" #task><br /><br />
-<button (click)="addTask(task.value)">Add Task</button>
+<form>
+  <input type="text" placeholder="Enter Task" #task/><br /><br />
+  <button (click)="addTask(task.value)">Add Task</button>
+</form>
 <ol>
-  <li *ngFor="let task of userTasks">{{task.name}} <button (click)="deleteTask(task.id)">Delete</button></li>
+  <li *ngFor="let task of userTasks">
+    {{ task.name }} <button (click)="deleteTask(task.id)">Delete</button>
+  </li>
 </ol>
 
 <app-widget [item]="data"></app-widget>
 <button (click)="random()">Update value</button>
 
+<h1>{{ 2029.3312342 | number: "3.2-4" }}</h1>
+<h1>{{ "hello world" | titlecase }}</h1>
+<h3>{{ 20 | usdInr: 72 | currency: "INR"}} is {{20 | currency: "USD"}}</h3>
+<form #logInForm="ngForm" (ngSubmit)=userlogin(logInForm.value)>
+  <input type="text" #name="ngModel" required name="name" placeholder="Enter Username" ngModel>
+  <br>
+  <span *ngIf="name.invalid">Please enter correct email address</span>
+  <br>
+  <input type="password" name="password" placeholder="Enter Password" ngModel>
+  <br>
+  <button>Submit</button>
+</form>
+<h1 appRedEl>Directive in Angular</h1>
+<app-reactiveform></app-reactiveform>
+<button type="button" (click)="onSave($event)">Save</button>
+<h1 style="text-align:center">data sent from child component - {{childData}}</h1>
+<app-widget (updateDataEvent)="updateData($event)"></app-widget>
 
 <!-- <input type="number" #input (keyup)="load(input.value)" placeholder="enter text"/>
 <p>input value added by 5 is :{{value}}</p>
@@ -31,4 +52,3 @@
 <input type="text" name="value" [(ngModel)]="named">
 <p> You entered {{named}}</p>
 <button (click)="clearValue()">Clear</button> -->
-
